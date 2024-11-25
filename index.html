@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chubby Tea Review</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      max-width: 700px;
+      background-color: #013220;
+      color: #FFD700;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #333;
+    }
+    .output {
+      margin: 15px 0;
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #222;
+      color: #FFD700;
+    }
+    a {
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    a:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chubby Tea Review</h1>
+  <p>Click the button below to generate a review. Use the links to leave a review on Google or Yelp!</p>
+
+  <button onclick="generateReview()">Generate a Review</button>
+  <button onclick="copyToClipboard()">Copy to Clipboard</button>
+  <div id="reviewOutput" class="output">Your review will appear here.</div>
+
+  <a href="https://gorate.biz/Bobachris" target="_blank">Leave a Google Review</a>
+  <a href="https://www.yelp.com/writeareview/biz/38eXlFZ8UD_ExersL2-Smg?review_origin=review-feed-war-widget" target="_blank">Leave a Yelp Review</a>
+
+  <script>
+    function generateReview() {
+      const reviews = [
+        "Thanks Chris for recommending the Strawberry Explosion from Chubby Tea, it was very refreshing.",
+        "Thanks Chris for recommending the Lemon Explosion at Chubby Tea, it was refreshing.",
+        "Thanks Chris for recommending the Triple Milk Tea at Chubby Tea, it tasted very smooth.",
+        "Thanks Chris for recommending the Green Milk Tea at Chubby Tea, it was delicious.",
+        "Chris recommended the Strawberry Yogurt, very tasty.",
+        "Chris recommended the Strawberry Fresh Milk and it was perfect."
+      ];
+
+      const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
+      document.getElementById("reviewOutput").textContent = randomReview;
+    }
+
+    function copyToClipboard() {
+      const reviewText = document.getElementById("reviewOutput").textContent;
+      if (reviewText && reviewText !== "Your review will appear here.") {
+        navigator.clipboard.writeText(reviewText).then(() => {
+          alert("Review copied to clipboard!");
+        }).catch(err => {
+          console.error("Failed to copy:", err);
+        });
+      } else {
+        alert("No review to copy! Generate a review first.");
+      }
+    }
+  </script>
+
+</body>
+</html>
