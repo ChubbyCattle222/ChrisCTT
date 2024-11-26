@@ -55,14 +55,14 @@
   <h1>Chubby Tea</h1>
   <p>Click the button below to generate a review. Use the links to leave a review on Google or Yelp!</p>
 
-  <button onclick="generateReview()">Generate a Review</button>
+  <button id="generateReviewButton">Generate a Review</button>
   <button onclick="copyToClipboard()">Copy to Clipboard</button>
   <div id="reviewOutput" class="output">Your review will appear here.</div>
 
   <a href="https://gorate.biz/Bobachris" target="_blank">Leave a Google Review</a>
   <a href="https://www.yelp.com/writeareview/biz/38eXlFZ8UD_ExersL2-Smg?review_origin=review-feed-war-widget" target="_blank">Leave a Yelp Review</a>
 
-    <h2>Available Drinks</h2>
+  <h2>Available Drinks</h2>
   <h3>Categories</h3>
 
   <h4>Milk Teas</h4>
@@ -99,6 +99,9 @@
   </ul>
 
   <script>
+    // Attach event listener to ensure functionality
+    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
+
     function generateReview() {
       const reviews = [
         "Thanks Chris for recommending the Strawberry Explosion from Chubby Tea! The drink was a perfect mix of fruity sweetness and slightly herbal. It was very refreshing and really paired well with my dinner. The atmosphere at Chubby Tea was lively, and the staff was super friendly and efficient. I’ll definitely be back to try more recommendations!",
@@ -146,3 +149,6 @@
       }
     }
   </script>
+
+</body>
+</html>
