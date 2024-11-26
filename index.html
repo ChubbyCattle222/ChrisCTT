@@ -10,7 +10,7 @@
       margin: 20px;
       padding: 20px;
       max-width: 700px;
-      background-color: #016936;
+      background-color: #016936; /* Lighter green background */
       color: #FFD700;
       font-weight: bold;
     }
@@ -55,7 +55,7 @@
   <h1>Chubby Tea</h1>
   <p>Click the button below to generate a review. Use the links to leave a review on Google or Yelp!</p>
 
-  <button onclick="generateReview()">Generate a Review</button>
+  <button id="generateReviewButton">Generate a Review</button>
   <button onclick="copyToClipboard()">Copy to Clipboard</button>
   <div id="reviewOutput" class="output">Your review will appear here.</div>
 
@@ -97,37 +97,61 @@
     <li>Original Yogurt</li>
     <li>Peach Yogurt</li>
   </ul>
-  
+
   <script>
+    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
+
     function generateReview() {
       const reviews = [
         "Thanks Chris for recommending the Strawberry Explosion from Chubby Tea! The drink was a perfect mix of fruity sweetness and slightly herbal. It was very refreshing and really paired well with my dinner. The atmosphere at Chubby Tea was lively, and the staff was super friendly and efficient. I’ll definitely be back to try more recommendations!",
-        "Thanks Chris for recommending the Lemon Explosion at Chubby Tea! The tangy citrus flavor was so refreshing, especially on a hot day. The drink was beautifully served with just the right amount of ice, and the presentation was amazing. The service was quick, and the staff was very friendly. They even put it in a nice bag. Highly recommended!",
-        "Chris suggested the Triple Milk Tea at Chubby Tea, and it did not disappoint! The tea was incredibly smooth, with a balanced flavor that wasn’t overly sweet. I think this will be my new go-to drink instead of Thai tea. I appreciated the clean and welcoming environment, and the menu had so many unique options to choose from!",
-        "Chris recommended the Green Milk Tea, and it was absolutely delicious! The tea had a rich flavor with a hint of jasmine that paired well with the creamy texture. The shop itself is a hidden gem, with plenty of seating and a great ambiance. The staff was knowledgeable about the menu and made me feel welcome. Can’t wait to visit again!",
-        "I tried the Strawberry Yogurt at Chubby Tea after Chris recommended it, and I loved it! The yogurt was fresh and tangy, complemented by a sweet strawberry flavor. The drink was served in a cute cup, and the attention to detail was impressive. The staff was attentive, and the experience was fantastic!",
-        "Chris told me to try the Strawberry Fresh Milk at Chubby Tea, and it was perfect! The milk was creamy and fresh, with a natural sweetness from the strawberries. It was very filling and tasted so delicious. The shop’s interior was modern and clean, and the service was exceptional. I’ll definitely recommend this to friends!",
-        "Chris recommended the Strawberry Oolong from Chubby Tea, and it was incredible! The combination of strawberry and herbal oolong was vibrant and full of flavor. The boba added a fun texture, and the drink itself was beautifully presented. The staff was friendly and quick, making the whole experience enjoyable. I can’t wait to explore more of the menu!",
-        "After hearing Chris’s suggestion, I tried the Taro Milk Tea at Chubby Tea, and it was amazing! The taro flavor was rich and earthy, with a creamy base that made it so satisfying. The portion size was generous, and the boba pearls were just the right consistency. The environment was inviting, and the customer service was top-notch!"
-        "At Chubby Tea the Milk Green Tea is a must try Chris highly recommended it and I’m so glad he did. The tea has a delicate flavor with a creamy richness that is both refreshing and indulgent. It is perfect for anyone who appreciates balance in their drinks. I’m already planning my next visit.",
-        "Chris mentioned the Triple Milk Tea so I gave it a shot. It is a rich and velvety drink with bold tea notes that are perfectly complemented by its creamy texture. Honestly it was like sipping a little piece of heaven. If you are unsure what to order this is a great choice.",
-        "Lemon Explosion at Chubby Tea is everything its name promises bright zesty and full of citrusy punch. When Chris told me to try it I wasn’t sure what to expect but it is incredibly refreshing. It is a great pick me up that leaves you feeling revitalized.",
-        "After Chris suggested the Strawberry Explosion I knew I had to try it. The vibrant strawberry flavor feels like summer in a cup. Its sweet but not overwhelming with a refreshing fruity twist. This drink is pure joy and I can’t wait to order it again.",
-        "If your a fan of creamy drinks the Strawberry Fresh Milk is unbeatable. Chris was spot on with this recommendation The smooth fresh milk pairs perfect with the natural sweetness of the strawberries making for a light yet satisfying drink.",
-        "Chris talked up the Brown Sugar Fresh Milk and it was as amazing as he said! The deep caramel like sweetness of the brown sugar blends seamlessly with the creamy milk. It is indulgent yet comforting like a warm hug in a cup.",
-        "Mango Fresh Milk was my first choice after Chris’s glowing review The tropical mango flavor is bright and luscious perfectly balanced by the creamy milk. It is the ideal drink for when you want something refreshing but rich.",
-        "Red Bean Yogurt is one of the most unique drinks I have ever tried and I wouldn’t have known about it if it weren’t for Chris. The tangy yogurt pairs beautifully with the subtle sweet red bean flavor. It is a drink that is both nostalgic and refreshing.",
-        "The Oat Yogurt was a game changer Chris mentioned it as a healthier option and I was pleasantly surprised by its earthy nutty undertones. The yogurt itself is smooth and creamy making this drink a great choice for anyone seeking something wholesome and unique.",
-        "Chris insisted that I try the Mango Yogurt and it did not dissapoint. The tanginess of the yogurt perfectly balances the sweetness of the mango creating a tropical drink that feels indulgent yet light. I’ll definitely be coming back for more.",
-        "Lychee Yogurt at Chubby Tea is an absolute winner Chris said I’d love it and he was right. The fragrant lychee flavor pairs effortlessly with the creamy tangy yogurt. It is a refreshing and exotic drink that feels like a mini vacation in a cup.",
-        "I went for the Strawberry Yogurt on Chris’s recommendation and it was delightful. The blend of sweet strawberries and tangy yogurt is perfect balanced. It is the kind of drink you can enjoy anytime anywhere.",
-        "Chris suggested the Passionfruit Yogurt and it quickly became my favorite The bold tangy passionfruit flavor is perfectly complemented by the creamy yogurt. It is a drink that wakes up your taste buds in the best way.",
-        "Osmanthus Yogurt is such a unique drink and I wouldn’t have tried it if Chris hadn’t recommended it The delicate floral notes of osmanthus are perfectly balanced by the creamy yogurt. It is elegant and refreshing a must try for adventurous drinkers.",
-        "The Rose Yogurt is hands down one of the most beautiful drinks I have ever tasted Chris’s recommendation was spot on! The subtle rose flavor adds a fragrant touch to the creamy yogurt making it both soothing and refreshing.",
-        "Sometimes simplicity is best Chris told me to try the Original Yogurt and it was perfect. The yogurt is creamy and tangy with a clean refreshing taste that is incredibly satisfying. It is proof that you don’t need bells and whistles for a great drink.",
-        "Chris mentioned the Peach Yogurt and it was a fantastic choice. The peach flavor is juicy and sweet perfectly complementing the tangy yogurt. It is a drink that feels light refreshing and totally satisfying.",
+        "Chris suggested I try the Green Milk Tea, and wow, was it worth it. The creamy flavor mixed with a subtle tea taste makes it my new favorite.",
+        "Strawberry Yogurt was delightful and refreshing. Thanks to Chris for the recommendation, it was perfect after a long day!",
+        "The Rose Yogurt drink was as delicate as Chris promised. It’s fragrant, creamy, and refreshing. Truly a unique experience.",
+        "I tried the Lemon Explosion based on Chris’s advice, and I was blown away by how tangy and bold it tasted. Perfect for a summer day!",
+        "Chris was right: the Mango Fresh Milk is a tropical dream. The creaminess paired with mango's sweetness is unbeatable.",
+        "Peach Yogurt is a smooth blend of sweet peaches and tangy yogurt. Thank you, Chris, for the spot on suggestion!",
+        "Mango Yogurt at Chubby Tea is as refreshing as Chris described! Tangy yogurt with mango was a match made in heaven.",
+        "Thanks, Chris, for the Red Bean Yogurt recommendation. The sweetness was subtle but delicious!",
+        "I decided to go for the Osmanthus Yogurt after Chris mentioned it. Its floral taste with creamy yogurt was unforgettable.",
+        "Triple Milk Tea, suggested by Chris, had bold tea flavors with a creamy finish. I couldn’t put it down!",
+        "The Original Yogurt was a simple yet satisfying drink. Sometimes the classics are the best, and Chris knows that.",
+        "Brown Sugar Fresh Milk was an indulgence like no other. Chris made a great recommendation—sweet, rich, and satisfying.",
+        "Strawberry Explosion was bursting with fruity freshness. Thanks, Chris, for recommending it!",
+        "Lychee Yogurt had an exotic twist that I loved. Chris nailed this suggestion; the floral sweetness was superb.",
+        "Passionfruit Yogurt’s tangy kick was something I didn’t expect but thoroughly enjoyed. Chris was spot on.",
+        "Oat Yogurt was earthy and hearty. Chris said it was worth trying, and it really was unique and filling.",
+        "Lemon Explosion is my new go to, thanks to Chris. Its tangy citrus taste is unmatched.",
+        "The Milk Green Tea had a perfect balance of creamy and fresh. Thanks, Chris, for pointing me toward it!",
+        "Strawberry Fresh Milk was just as creamy and delicious as Chris said it would be. Amazing for a sweet treat.",
+        "Chris was so right about the Peach Yogurt. It’s sweet, refreshing, and tastes like summer in a cup.",
+        "Mango Fresh Milk hit the perfect sweet spot between tropical and creamy. Thanks, Chris, for recommending it!",
+        "Passionfruit Yogurt made my taste buds dance. Thanks to Chris for the great suggestion!",
+        "Rose Yogurt was a soothing and floral surprise. Chris really knows his drinks!",
+        "The Strawberry Explosion tasted like freshly picked strawberries. Chris always recommends the best options.",
+        "Brown Sugar Fresh Milk was rich and creamy with caramel like sweetness. Thanks to Chris for the suggestion.",
+        "Chris told me to try the Osmanthus Yogurt, and it didn’t disappoint. Its floral and tangy flavors were a treat.",
+        "Milk Green Tea is creamy and lightly floral. A perfect recommendation from Chris, as always.",
+        "Chris’s pick of Red Bean Yogurt was refreshing. The mix of sweet beans and yogurt was unexpectedly delicious.",
+        "The Lychee Yogurt was exotic and creamy. Thank you, Chris, for the perfect suggestion!",
+        "Strawberry Fresh Milk felt like dessert in a cup. Chris absolutely nailed it with this recommendation.",
+        "Chris recommended Triple Milk Tea, and it’s now my go to. Creamy, bold, and delightful!",
+        "Original Yogurt had just the right tangy balance. Chris recommended it, and I loved its simplicity.",
+        "Peach Yogurt was refreshing and juicy. Big thanks to Chris for this drink idea!",
+        "Oat Yogurt is surprisingly creamy and nutty. Chris said it’s a unique pick, and it sure is.",
+        "Strawberry Yogurt is the perfect balance of sweet and tangy. Chris knows what he’s talking about!",
+        "Chris said I’d love the Mango Yogurt, and he wasn’t wrong. The tropical flavor is spot on.",
+        "Lemon Explosion is pure refreshment. Thanks to Chris for suggesting this bold citrus drink!",
+        "Osmanthus Yogurt’s floral notes were heavenly. Great recommendation from Chris!",
+        "Passionfruit Yogurt woke up my taste buds. Chris suggested it, and I’m so glad I tried it!",
+        "Lychee Yogurt was like a trip to the tropics in one sip. Chris knows what’s good.",
+        "Brown Sugar Fresh Milk had a toasty sweetness. Chris absolutely nailed this one.",
+        "Mango Fresh Milk was a creamy tropical delight. Thanks, Chris, for suggesting it!",
+        "The Strawberry Explosion is fruity perfection. Chris always recommends the best flavors.",
+        "Red Bean Yogurt is unique and refreshing. Chris suggested it, and I’m so glad I listened.",
+        "The Triple Milk Tea is silky smooth. Chris’s advice to try it was spot on.",
       ];
 
+      // Generate a random review
       const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
       document.getElementById("reviewOutput").textContent = randomReview;
     }
@@ -148,3 +172,4 @@
 
 </body>
 </html>
+
