@@ -10,7 +10,7 @@
       margin: 20px;
       padding: 20px;
       max-width: 700px;
-      background-color: #016936; /* Lighter green background */
+      background-color: #016936;
       color: #FFD700;
       font-weight: bold;
     }
@@ -55,7 +55,7 @@
   <h1>Chubby Tea</h1>
   <p>Click the button below to generate a review. Use the links to leave a review on Google or Yelp!</p>
 
-  <button id="generateReviewButton">Generate a Review</button>
+  <button onclick="generateReview()">Generate a Review</button>
   <button onclick="copyToClipboard()">Copy to Clipboard</button>
   <div id="reviewOutput" class="output">Your review will appear here.</div>
 
@@ -97,11 +97,8 @@
     <li>Original Yogurt</li>
     <li>Peach Yogurt</li>
   </ul>
-
+  
   <script>
-    // Attach event listener to ensure functionality
-    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
-
     function generateReview() {
       const reviews = [
         "Thanks Chris for recommending the Strawberry Explosion from Chubby Tea! The drink was a perfect mix of fruity sweetness and slightly herbal. It was very refreshing and really paired well with my dinner. The atmosphere at Chubby Tea was lively, and the staff was super friendly and efficient. I’ll definitely be back to try more recommendations!",
@@ -131,7 +128,6 @@
         "Chris mentioned the Peach Yogurt and it was a fantastic choice. The peach flavor is juicy and sweet perfectly complementing the tangy yogurt. It is a drink that feels light refreshing and totally satisfying.",
       ];
 
-      // Generate a random review
       const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
       document.getElementById("reviewOutput").textContent = randomReview;
     }
