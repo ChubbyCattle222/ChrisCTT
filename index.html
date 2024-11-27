@@ -1,175 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chubby Tea</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 20px;
-      max-width: 700px;
-      background-color: #016936; /* Lighter green background */
-      color: #FFD700;
-      font-weight: bold;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 10px 5px;
-      background-color: black;
-      color: white;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    button:hover {
-      background-color: #333;
-    }
-    .output {
-      margin: 15px 0;
-      padding: 10px;
-      border: 1px solid #444;
-      border-radius: 5px;
-      background-color: #222;
-      color: #FFD700;
-    }
-    a {
-      text-decoration: none;
-      padding: 10px 20px;
-      margin: 10px 5px;
-      background-color: black;
-      color: white;
-      font-weight: bold;
-      border-radius: 5px;
-      display: inline-block;
-    }
-    a:hover {
-      background-color: #333;
-    }
-  </style>
-</head>
-<body>
+<script>
+  document.getElementById("generateReviewButton").addEventListener("click", generateReview);
 
-  <h1>Chubby Tea</h1>
-  <p>Click the button below to generate a review. Use the links to leave a review on Google or Yelp!</p>
+  // List of drinks
+  const drinks = [
+    "Milk Green Tea",
+    "Triple Milk Tea",
+    "Lemon Explosion",
+    "Strawberry Explosion",
+    "Strawberry Fresh Milk",
+    "Brown Sugar Fresh Milk",
+    "Mango Fresh Milk",
+    "Red Bean Yogurt",
+    "Oat Yogurt",
+    "Mango Yogurt",
+    "Lychee Yogurt",
+    "Strawberry Yogurt",
+    "Passionfruit Yogurt",
+    "Osmanthus Yogurt",
+    "Rose Yogurt",
+    "Original Yogurt",
+    "Peach Yogurt"
+  ];
 
-  <button id="generateReviewButton">Generate a Review</button>
-  <button onclick="copyToClipboard()">Copy to Clipboard</button>
-  <div id="reviewOutput" class="output">Your review will appear here.</div>
+  // Phrases to combine into reviews
+  const flavorDescriptions = [
+    "had a perfect balance of sweetness and creaminess",
+    "was incredibly refreshing and flavorful",
+    "offered a unique and delightful taste",
+    "was bursting with natural flavors",
+    "had an elegant and smooth texture",
+    "was perfectly balanced with a light and fragrant flavor",
+    "delivered a rich, creamy taste that was irresistible",
+    "offered an exotic and satisfying flavor profile",
+    "was sweet and tangy, just the right mix",
+    "was light yet bold, an amazing choice"
+  ];
 
-  <a href="https://gorate.biz/Bobachris" target="_blank">Leave a Google Review</a>
-  <a href="https://www.yelp.com/writeareview/biz/38eXlFZ8UD_ExersL2-Smg?review_origin=review-feed-war-widget" target="_blank">Leave a Yelp Review</a>
+  const reactionPhrases = [
+    "Thanks to Chris, this drink is now my favorite.",
+    "Chris knows the best drinks, and this one is a winner.",
+    "I’d definitely recommend this to anyone, thanks to Chris.",
+    "Chris’s suggestion was spot on as always!",
+    "This drink exceeded my expectations, all thanks to Chris.",
+    "Chris always recommends the best drinks, and this was no exception.",
+    "I loved every sip, thanks to Chris’s great taste.",
+    "Chris absolutely nailed it with this recommendation.",
+    "This was such a treat—Chris knows what’s good!",
+    "I’m so glad Chris recommended this drink to me."
+  ];
 
-  <h2>Available Drinks</h2>
-  <h3>Categories</h3>
+  const usedReviews = new Set();
 
-  <h4>Milk Teas</h4>
-  <ul>
-    <li>Milk Green Tea</li>
-    <li>Triple Milk Tea</li>
-  </ul>
-
-  <h4>Fruit Teas</h4>
-  <ul>
-    <li>Lemon Explosion</li>
-    <li>Strawberry Explosion</li>
-  </ul>
-
-  <h4>Fresh Milks</h4>
-  <ul>
-    <li>Strawberry Fresh Milk</li>
-    <li>Brown Sugar Fresh Milk</li>
-    <li>Mango Fresh Milk</li>
-  </ul>
-
-  <h4>Yogurts</h4>
-  <ul>
-    <li>Red Bean Yogurt</li>
-    <li>Oat Yogurt</li>
-    <li>Mango Yogurt</li>
-    <li>Lychee Yogurt</li>
-    <li>Strawberry Yogurt</li>
-    <li>Passionfruit Yogurt</li>
-    <li>Osmanthus Yogurt</li>
-    <li>Rose Yogurt</li>
-    <li>Original Yogurt</li>
-    <li>Peach Yogurt</li>
-  </ul>
-
-  <script>
-    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
-
-    function generateReview() {
-      const reviews = [
-        "Thanks Chris for recommending the Strawberry Explosion from Chubby Tea! The drink was a perfect mix of fruity sweetness and slightly herbal. It was very refreshing and really paired well with my dinner. The atmosphere at Chubby Tea was lively, and the staff was super friendly and efficient. I’ll definitely be back to try more recommendations!",
-        "Chris suggested I try the Green Milk Tea, and wow, was it worth it. The creamy flavor mixed with a subtle tea taste makes it my new favorite.",
-        "Strawberry Yogurt was delightful and refreshing. Thanks to Chris for the recommendation, it was perfect after a long day!",
-        "The Rose Yogurt drink was as delicate as Chris promised. It’s fragrant, creamy, and refreshing. Truly a unique experience.",
-        "I tried the Lemon Explosion based on Chris’s advice, and I was blown away by how tangy and bold it tasted. Perfect for a summer day!",
-        "Chris was right: the Mango Fresh Milk is a tropical dream. The creaminess paired with mango's sweetness is unbeatable.",
-        "Peach Yogurt is a smooth blend of sweet peaches and tangy yogurt. Thank you, Chris, for the spot on suggestion!",
-        "Mango Yogurt at Chubby Tea is as refreshing as Chris described! Tangy yogurt with mango was a match made in heaven.",
-        "Thanks, Chris, for the Red Bean Yogurt recommendation. The sweetness was subtle but delicious!",
-        "I decided to go for the Osmanthus Yogurt after Chris mentioned it. Its floral taste with creamy yogurt was unforgettable.",
-        "Triple Milk Tea, suggested by Chris, had bold tea flavors with a creamy finish. I couldn’t put it down!",
-        "The Original Yogurt was a simple yet satisfying drink. Sometimes the classics are the best, and Chris knows that.",
-        "Brown Sugar Fresh Milk was an indulgence like no other. Chris made a great recommendation—sweet, rich, and satisfying.",
-        "Strawberry Explosion was bursting with fruity freshness. Thanks, Chris, for recommending it!",
-        "Lychee Yogurt had an exotic twist that I loved. Chris nailed this suggestion; the floral sweetness was superb.",
-        "Passionfruit Yogurt’s tangy kick was something I didn’t expect but thoroughly enjoyed. Chris was spot on.",
-        "Oat Yogurt was earthy and hearty. Chris said it was worth trying, and it really was unique and filling.",
-        "Lemon Explosion is my new go to, thanks to Chris. Its tangy citrus taste is unmatched.",
-        "The Milk Green Tea had a perfect balance of creamy and fresh. Thanks, Chris, for pointing me toward it!",
-        "Strawberry Fresh Milk was just as creamy and delicious as Chris said it would be. Amazing for a sweet treat.",
-        "Chris was so right about the Peach Yogurt. It’s sweet, refreshing, and tastes like summer in a cup.",
-        "Mango Fresh Milk hit the perfect sweet spot between tropical and creamy. Thanks, Chris, for recommending it!",
-        "Passionfruit Yogurt made my taste buds dance. Thanks to Chris for the great suggestion!",
-        "Rose Yogurt was a soothing and floral surprise. Chris really knows his drinks!",
-        "The Strawberry Explosion tasted like freshly picked strawberries. Chris always recommends the best options.",
-        "Brown Sugar Fresh Milk was rich and creamy with caramel like sweetness. Thanks to Chris for the suggestion.",
-        "Chris told me to try the Osmanthus Yogurt, and it didn’t disappoint. Its floral and tangy flavors were a treat.",
-        "Milk Green Tea is creamy and lightly floral. A perfect recommendation from Chris, as always.",
-        "Chris’s pick of Red Bean Yogurt was refreshing. The mix of sweet beans and yogurt was unexpectedly delicious.",
-        "The Lychee Yogurt was exotic and creamy. Thank you, Chris, for the perfect suggestion!",
-        "Strawberry Fresh Milk felt like dessert in a cup. Chris absolutely nailed it with this recommendation.",
-        "Chris recommended Triple Milk Tea, and it’s now my go to. Creamy, bold, and delightful!",
-        "Original Yogurt had just the right tangy balance. Chris recommended it, and I loved its simplicity.",
-        "Peach Yogurt was refreshing and juicy. Big thanks to Chris for this drink idea!",
-        "Oat Yogurt is surprisingly creamy and nutty. Chris said it’s a unique pick, and it sure is.",
-        "Strawberry Yogurt is the perfect balance of sweet and tangy. Chris knows what he’s talking about!",
-        "Chris said I’d love the Mango Yogurt, and he wasn’t wrong. The tropical flavor is spot on.",
-        "Lemon Explosion is pure refreshment. Thanks to Chris for suggesting this bold citrus drink!",
-        "Osmanthus Yogurt’s floral notes were heavenly. Great recommendation from Chris!",
-        "Passionfruit Yogurt woke up my taste buds. Chris suggested it, and I’m so glad I tried it!",
-        "Lychee Yogurt was like a trip to the tropics in one sip. Chris knows what’s good.",
-        "Brown Sugar Fresh Milk had a toasty sweetness. Chris absolutely nailed this one.",
-        "Mango Fresh Milk was a creamy tropical delight. Thanks, Chris, for suggesting it!",
-        "The Strawberry Explosion is fruity perfection. Chris always recommends the best flavors.",
-        "Red Bean Yogurt is unique and refreshing. Chris suggested it, and I’m so glad I listened.",
-        "The Triple Milk Tea is silky smooth. Chris’s advice to try it was spot on.",
-      ];
-
-      // Generate a random review
-      const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
-      document.getElementById("reviewOutput").textContent = randomReview;
+  function generateReview() {
+    if (usedReviews.size >= drinks.length * flavorDescriptions.length * reactionPhrases.length) {
+      document.getElementById("reviewOutput").textContent = "All possible reviews have been generated.";
+      return;
     }
 
-    function copyToClipboard() {
-      const reviewText = document.getElementById("reviewOutput").textContent;
-      if (reviewText && reviewText !== "Your review will appear here.") {
-        navigator.clipboard.writeText(reviewText).then(() => {
-          alert("Review copied to clipboard!");
-        }).catch(err => {
-          console.error("Failed to copy:", err);
-        });
-      } else {
-        alert("No review to copy! Generate a review first.");
-      }
+    let review;
+    do {
+      const drink = drinks[Math.floor(Math.random() * drinks.length)];
+      const flavor = flavorDescriptions[Math.floor(Math.random() * flavorDescriptions.length)];
+      const reaction = reactionPhrases[Math.floor(Math.random() * reactionPhrases.length)];
+      review = `Chris recommended the ${drink}, and it ${flavor}. ${reaction}`;
+    } while (usedReviews.has(review));
+
+    usedReviews.add(review);
+    document.getElementById("reviewOutput").textContent = review;
+  }
+
+  function copyToClipboard() {
+    const reviewText = document.getElementById("reviewOutput").textContent;
+    if (reviewText && reviewText !== "Your review will appear here.") {
+      navigator.clipboard.writeText(reviewText).then(() => {
+        alert("Review copied to clipboard!");
+      }).catch(err => {
+        console.error("Failed to copy:", err);
+      });
+    } else {
+      alert("No review to copy! Generate a review first.");
     }
-  </script>
-
-</body>
-</html>
-
+  }
+</script>
