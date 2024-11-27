@@ -101,21 +101,25 @@
   <script>
     const reviewsGenerated = new Set();
 
-    const drinks = [
-      "Milk Green Tea", "Triple Milk Tea", "Lemon Explosion", "Strawberry Explosion",
-      "Strawberry Fresh Milk", "Brown Sugar Fresh Milk", "Mango Fresh Milk",
-      "Red Bean Yogurt", "Oat Yogurt", "Mango Yogurt", "Lychee Yogurt",
-      "Strawberry Yogurt", "Passionfruit Yogurt", "Osmanthus Yogurt", "Rose Yogurt",
-      "Original Yogurt", "Peach Yogurt"
-    ];
-
-    const adjectives = [
-      "delicious", "refreshing", "creamy", "vibrant", "tangy", "sweet", "bold", 
-      "exquisite", "fragrant", "indulgent", "perfect", "unique", "satisfying", 
-      "lively", "soothing", "tropical", "aromatic", "heavenly", "invigorating", 
-      "rich", "balanced", "smooth", "light", "pleasing", "zesty", "amazing", 
-      "wonderful", "exhilarating", "fantastic", "spectacular", "divine"
-    ];
+    const drinks = {
+      "Milk Green Tea": ["smooth and subtly herbal", "creamy with a gentle green tea aroma"],
+      "Triple Milk Tea": ["rich and indulgent", "perfectly balanced with layers of creaminess"],
+      "Lemon Explosion": ["zesty and invigorating", "a refreshing burst of citrus"],
+      "Strawberry Explosion": ["sweet and fruity", "a delightful strawberry packed treat"],
+      "Strawberry Fresh Milk": ["lusciously creamy with real strawberry flavor", "a perfect blend of fresh and sweet"],
+      "Brown Sugar Fresh Milk": ["decadently sweet with caramel notes", "a smooth and rich delight"],
+      "Mango Fresh Milk": ["tropical and vibrant", "smooth and bursting with mango goodness"],
+      "Red Bean Yogurt": ["earthy and subtly sweet", "a unique combination of red bean and creamy yogurt"],
+      "Oat Yogurt": ["wholesome and hearty", "a satisfying and creamy oat flavor"],
+      "Mango Yogurt": ["tropical and tangy", "a refreshing mango and yogurt combination"],
+      "Lychee Yogurt": ["floral and fragrant", "light and fruity with a tangy twist"],
+      "Strawberry Yogurt": ["classic and sweet", "a creamy strawberry delight"],
+      "Passionfruit Yogurt": ["tangy and tropical", "bright and invigorating"],
+      "Osmanthus Yogurt": ["floral and aromatic", "delicately sweet and refreshing"],
+      "Rose Yogurt": ["elegant and fragrant", "a subtle blend of rose and creamy yogurt"],
+      "Original Yogurt": ["classic and tangy", "smooth and perfectly balanced"],
+      "Peach Yogurt": ["sweet and juicy", "a creamy peachy treat"]
+    };
 
     const openers = [
       "I recently stopped by Chubby Tea and tried", 
@@ -140,12 +144,12 @@
     document.getElementById("generateReviewButton").addEventListener("click", generateReview);
 
     function generateRandomReview() {
-      const drink = drinks[Math.floor(Math.random() * drinks.length)];
-      const adj1 = adjectives[Math.floor(Math.random() * adjectives.length)];
-      const adj2 = adjectives[Math.floor(Math.random() * adjectives.length)];
+      const drink = Object.keys(drinks)[Math.floor(Math.random() * Object.keys(drinks).length)];
+      const descriptors = drinks[drink];
+      const description = descriptors[Math.floor(Math.random() * descriptors.length)];
       const opener = openers[Math.floor(Math.random() * openers.length)];
       const closer = closers[Math.floor(Math.random() * closers.length)];
-      return `${opener} the ${drink}. It was ${adj1} and ${adj2}. ${closer}`;
+      return `${opener} the ${drink}. It was ${description}. ${closer}`;
     }
 
     function generateReview() {
