@@ -10,7 +10,7 @@
       margin: 20px;
       padding: 20px;
       max-width: 700px;
-      background-color: #016936; /* Lighter green background */
+      background-color: #016936;
       color: #FFD700;
       font-weight: bold;
     }
@@ -99,6 +99,10 @@
   </ul>
 
   <script>
+    const reviewsGenerated = new Set();
+
+    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
+
     const drinks = [
       "Milk Green Tea", "Triple Milk Tea", "Lemon Explosion", "Strawberry Explosion",
       "Strawberry Fresh Milk", "Brown Sugar Fresh Milk", "Mango Fresh Milk",
@@ -108,53 +112,25 @@
     ];
 
     const adjectives = [
-      "delightful", "refreshing", "fragrant", "vibrant", "creamy", "smooth",
-      "heavenly", "bold", "exquisite", "tropical", "unique", "zesty",
-      "flavorful", "aromatic", "satisfying", "sweet", "tangy", "rich",
-      "indulgent", "invigorating", "bright", "floral", "comforting",
-      "nutty", "silky", "delectable", "subtle", "luscious", "juicy"
+      "delicious", "refreshing", "creamy", "vibrant", "tangy", "sweet", "bold", 
+      "exquisite", "fragrant", "indulgent", "perfect", "unique", "satisfying", 
+      "lively", "soothing", "tropical", "aromatic", "heavenly", "invigorating", 
+      "rich", "balanced", "smooth", "light"
     ];
 
-    const phrases = {
-      intro: [
-        "Thanks, Chris, for recommending",
-        "Chris suggested trying",
-        "I went with Chris's recommendation of",
-        "Chris said I should try"
-      ],
-      description: [
-        "and it was absolutely",
-        "which turned out to be",
-        "and I found it to be",
-        "and it tasted so"
-      ],
-      opinion: [
-        "This drink is now one of my favorites.",
-        "I would definitely have this again.",
-        "It left me wanting more.",
-        "I’m so glad I tried it!"
-      ]
-    };
-
-    let generatedReviews = new Set();
+    function generateRandomReview() {
+      const drink = drinks[Math.floor(Math.random() * drinks.length)];
+      const adj1 = adjectives[Math.floor(Math.random() * adjectives.length)];
+      const adj2 = adjectives[Math.floor(Math.random() * adjectives.length)];
+      return `Chris recommended the ${drink}, and it was ${adj1} and ${adj2}. This drink is truly a must try for anyone looking for something special.`;
+    }
 
     function generateReview() {
-      if (generatedReviews.size === drinks.length * phrases.intro.length * phrases.description.length * adjectives.length * phrases.opinion.length) {
-        alert("All possible reviews have been generated!");
-        return;
-      }
-
       let review;
       do {
-        const drink = drinks[Math.floor(Math.random() * drinks.length)];
-        const intro = phrases.intro[Math.floor(Math.random() * phrases.intro.length)];
-        const description = phrases.description[Math.floor(Math.random() * phrases.description.length)];
-        const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-        const opinion = phrases.opinion[Math.floor(Math.random() * phrases.opinion.length)];
-        review = `${intro} ${drink} ${description} ${adjective}. ${opinion}`;
-      } while (generatedReviews.has(review));
-
-      generatedReviews.add(review);
+        review = generateRandomReview();
+      } while (reviewsGenerated.has(review));
+      reviewsGenerated.add(review);
       document.getElementById("reviewOutput").textContent = review;
     }
 
@@ -170,8 +146,6 @@
         alert("No review to copy! Generate a review first.");
       }
     }
-
-    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
   </script>
 
 </body>
