@@ -1,84 +1,178 @@
-<script>
-  document.getElementById("generateReviewButton").addEventListener("click", generateReview);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chubby Tea</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      max-width: 700px;
+      background-color: #016936; /* Lighter green background */
+      color: #FFD700;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #333;
+    }
+    .output {
+      margin: 15px 0;
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #222;
+      color: #FFD700;
+    }
+    a {
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    a:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
 
-  // List of drinks
-  const drinks = [
-    "Milk Green Tea",
-    "Triple Milk Tea",
-    "Lemon Explosion",
-    "Strawberry Explosion",
-    "Strawberry Fresh Milk",
-    "Brown Sugar Fresh Milk",
-    "Mango Fresh Milk",
-    "Red Bean Yogurt",
-    "Oat Yogurt",
-    "Mango Yogurt",
-    "Lychee Yogurt",
-    "Strawberry Yogurt",
-    "Passionfruit Yogurt",
-    "Osmanthus Yogurt",
-    "Rose Yogurt",
-    "Original Yogurt",
-    "Peach Yogurt"
-  ];
+  <h1>Chubby Tea</h1>
+  <p>Click the button below to generate a review. Use the links to leave a review on Google or Yelp!</p>
 
-  // Phrases to combine into reviews
-  const flavorDescriptions = [
-    "had a perfect balance of sweetness and creaminess",
-    "was incredibly refreshing and flavorful",
-    "offered a unique and delightful taste",
-    "was bursting with natural flavors",
-    "had an elegant and smooth texture",
-    "was perfectly balanced with a light and fragrant flavor",
-    "delivered a rich, creamy taste that was irresistible",
-    "offered an exotic and satisfying flavor profile",
-    "was sweet and tangy, just the right mix",
-    "was light yet bold, an amazing choice"
-  ];
+  <button id="generateReviewButton">Generate a Review</button>
+  <button onclick="copyToClipboard()">Copy to Clipboard</button>
+  <div id="reviewOutput" class="output">Your review will appear here.</div>
 
-  const reactionPhrases = [
-    "Thanks to Chris, this drink is now my favorite.",
-    "Chris knows the best drinks, and this one is a winner.",
-    "I’d definitely recommend this to anyone, thanks to Chris.",
-    "Chris’s suggestion was spot on as always!",
-    "This drink exceeded my expectations, all thanks to Chris.",
-    "Chris always recommends the best drinks, and this was no exception.",
-    "I loved every sip, thanks to Chris’s great taste.",
-    "Chris absolutely nailed it with this recommendation.",
-    "This was such a treat—Chris knows what’s good!",
-    "I’m so glad Chris recommended this drink to me."
-  ];
+  <a href="https://gorate.biz/Bobachris" target="_blank">Leave a Google Review</a>
+  <a href="https://www.yelp.com/writeareview/biz/38eXlFZ8UD_ExersL2-Smg?review_origin=review-feed-war-widget" target="_blank">Leave a Yelp Review</a>
 
-  const usedReviews = new Set();
+  <h2>Available Drinks</h2>
+  <h3>Categories</h3>
 
-  function generateReview() {
-    if (usedReviews.size >= drinks.length * flavorDescriptions.length * reactionPhrases.length) {
-      document.getElementById("reviewOutput").textContent = "All possible reviews have been generated.";
-      return;
+  <h4>Milk Teas</h4>
+  <ul>
+    <li>Milk Green Tea</li>
+    <li>Triple Milk Tea</li>
+  </ul>
+
+  <h4>Fruit Teas</h4>
+  <ul>
+    <li>Lemon Explosion</li>
+    <li>Strawberry Explosion</li>
+  </ul>
+
+  <h4>Fresh Milks</h4>
+  <ul>
+    <li>Strawberry Fresh Milk</li>
+    <li>Brown Sugar Fresh Milk</li>
+    <li>Mango Fresh Milk</li>
+  </ul>
+
+  <h4>Yogurts</h4>
+  <ul>
+    <li>Red Bean Yogurt</li>
+    <li>Oat Yogurt</li>
+    <li>Mango Yogurt</li>
+    <li>Lychee Yogurt</li>
+    <li>Strawberry Yogurt</li>
+    <li>Passionfruit Yogurt</li>
+    <li>Osmanthus Yogurt</li>
+    <li>Rose Yogurt</li>
+    <li>Original Yogurt</li>
+    <li>Peach Yogurt</li>
+  </ul>
+
+  <script>
+    const drinks = [
+      "Milk Green Tea", "Triple Milk Tea", "Lemon Explosion", "Strawberry Explosion",
+      "Strawberry Fresh Milk", "Brown Sugar Fresh Milk", "Mango Fresh Milk",
+      "Red Bean Yogurt", "Oat Yogurt", "Mango Yogurt", "Lychee Yogurt",
+      "Strawberry Yogurt", "Passionfruit Yogurt", "Osmanthus Yogurt", "Rose Yogurt",
+      "Original Yogurt", "Peach Yogurt"
+    ];
+
+    const adjectives = [
+      "delightful", "refreshing", "fragrant", "vibrant", "creamy", "smooth",
+      "heavenly", "bold", "exquisite", "tropical", "unique", "zesty",
+      "flavorful", "aromatic", "satisfying", "sweet", "tangy", "rich",
+      "indulgent", "invigorating", "bright", "floral", "comforting",
+      "nutty", "silky", "delectable", "subtle", "luscious", "juicy"
+    ];
+
+    const phrases = {
+      intro: [
+        "Thanks, Chris, for recommending",
+        "Chris suggested trying",
+        "I went with Chris's recommendation of",
+        "Chris said I should try"
+      ],
+      description: [
+        "and it was absolutely",
+        "which turned out to be",
+        "and I found it to be",
+        "and it tasted so"
+      ],
+      opinion: [
+        "This drink is now one of my favorites.",
+        "I would definitely have this again.",
+        "It left me wanting more.",
+        "I’m so glad I tried it!"
+      ]
+    };
+
+    let generatedReviews = new Set();
+
+    function generateReview() {
+      if (generatedReviews.size === drinks.length * phrases.intro.length * phrases.description.length * adjectives.length * phrases.opinion.length) {
+        alert("All possible reviews have been generated!");
+        return;
+      }
+
+      let review;
+      do {
+        const drink = drinks[Math.floor(Math.random() * drinks.length)];
+        const intro = phrases.intro[Math.floor(Math.random() * phrases.intro.length)];
+        const description = phrases.description[Math.floor(Math.random() * phrases.description.length)];
+        const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+        const opinion = phrases.opinion[Math.floor(Math.random() * phrases.opinion.length)];
+        review = `${intro} ${drink} ${description} ${adjective}. ${opinion}`;
+      } while (generatedReviews.has(review));
+
+      generatedReviews.add(review);
+      document.getElementById("reviewOutput").textContent = review;
     }
 
-    let review;
-    do {
-      const drink = drinks[Math.floor(Math.random() * drinks.length)];
-      const flavor = flavorDescriptions[Math.floor(Math.random() * flavorDescriptions.length)];
-      const reaction = reactionPhrases[Math.floor(Math.random() * reactionPhrases.length)];
-      review = `Chris recommended the ${drink}, and it ${flavor}. ${reaction}`;
-    } while (usedReviews.has(review));
-
-    usedReviews.add(review);
-    document.getElementById("reviewOutput").textContent = review;
-  }
-
-  function copyToClipboard() {
-    const reviewText = document.getElementById("reviewOutput").textContent;
-    if (reviewText && reviewText !== "Your review will appear here.") {
-      navigator.clipboard.writeText(reviewText).then(() => {
-        alert("Review copied to clipboard!");
-      }).catch(err => {
-        console.error("Failed to copy:", err);
-      });
-    } else {
-      alert("No review to copy! Generate a review first.");
+    function copyToClipboard() {
+      const reviewText = document.getElementById("reviewOutput").textContent;
+      if (reviewText && reviewText !== "Your review will appear here.") {
+        navigator.clipboard.writeText(reviewText).then(() => {
+          alert("Review copied to clipboard!");
+        }).catch(err => {
+          console.error("Failed to copy:", err);
+        });
+      } else {
+        alert("No review to copy! Generate a review first.");
+      }
     }
-  }
-</script>
+
+    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
+  </script>
+
+</body>
+</html>
