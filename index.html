@@ -101,8 +101,6 @@
   <script>
     const reviewsGenerated = new Set();
 
-    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
-
     const drinks = [
       "Milk Green Tea", "Triple Milk Tea", "Lemon Explosion", "Strawberry Explosion",
       "Strawberry Fresh Milk", "Brown Sugar Fresh Milk", "Mango Fresh Milk",
@@ -115,14 +113,39 @@
       "delicious", "refreshing", "creamy", "vibrant", "tangy", "sweet", "bold", 
       "exquisite", "fragrant", "indulgent", "perfect", "unique", "satisfying", 
       "lively", "soothing", "tropical", "aromatic", "heavenly", "invigorating", 
-      "rich", "balanced", "smooth", "light"
+      "rich", "balanced", "smooth", "light", "pleasing", "zesty", "amazing", 
+      "wonderful", "exhilarating", "fantastic", "spectacular", "divine"
     ];
+
+    const openers = [
+      "I recently stopped by Chubby Tea and tried", 
+      "Chris suggested I try", 
+      "On my visit to Chubby Tea, Chris recommended", 
+      "I decided to go with Chris’s advice and ordered", 
+      "After hearing Chris rave about it, I ordered", 
+      "I couldn’t resist trying", 
+      "Thanks to Chris, I got to enjoy"
+    ];
+
+    const closers = [
+      "This was definitely worth the visit!", 
+      "I’ll be coming back for more.", 
+      "Highly recommended if you’re in the area!", 
+      "I’m already planning my next trip here.", 
+      "I can’t wait to try more drinks from Chubby Tea.", 
+      "This was one of the best drinks I’ve ever had.", 
+      "Thank you, Chris, for the fantastic recommendation!"
+    ];
+
+    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
 
     function generateRandomReview() {
       const drink = drinks[Math.floor(Math.random() * drinks.length)];
       const adj1 = adjectives[Math.floor(Math.random() * adjectives.length)];
       const adj2 = adjectives[Math.floor(Math.random() * adjectives.length)];
-      return `Chris recommended the ${drink}, and it was ${adj1} and ${adj2}. This drink is truly a must try for anyone looking for something special.`;
+      const opener = openers[Math.floor(Math.random() * openers.length)];
+      const closer = closers[Math.floor(Math.random() * closers.length)];
+      return `${opener} the ${drink}. It was ${adj1} and ${adj2}. ${closer}`;
     }
 
     function generateReview() {
