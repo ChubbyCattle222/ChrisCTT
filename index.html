@@ -53,111 +53,81 @@
 <body>
 
   <h1>Chubby Tea</h1>
-  <p>Write a review for Chris or use the button below to generate one. Click "Copy to Clipboard" to save the generated review, then paste it where needed. Use the provided links below to leave a review on Google or Yelp. Thank you! 😀</p>
+  <p>Click the button below to generate a review. Use the link to leave a review on Yelp!</p>
 
-  <button id="generateReviewButton">Generate a Review</button>
+  <button onclick="generateReview()">Generate a Review</button>
   <button onclick="copyToClipboard()">Copy to Clipboard</button>
   <div id="reviewOutput" class="output">Your review will appear here.</div>
 
-  <a href="https://gorate.biz/Bobachris" target="_blank">Leave a Google Review</a>
   <a href="https://www.yelp.com/writeareview/biz/38eXlFZ8UD_ExersL2-Smg?review_origin=review-feed-war-widget" target="_blank">Leave a Yelp Review</a>
 
   <h2>Available Drinks</h2>
-  <h3>Categories</h3>
-
-  <h4>Milk Teas</h4>
   <ul>
+    <li>Milk Tea</li>
     <li>Milk Green Tea</li>
-    <li>Triple Milk Tea</li>
+    <li>Grapefruit Kumquat Green Tea</li>
+    <li>Guava Kumquat Green Tea</li>
+    <li>Mango Slushy</li>
+    <li>Thai Tea</li>
+    <li>Mango Coconut Slushy</li>
+    <li>Coconut Slushy</li>
+    <li>Herbal Hot Tea</li>
   </ul>
 
-  <h4>Fruit Teas</h4>
+  <h2>Toppings</h2>
   <ul>
-    <li>Lemon Explosion</li>
-    <li>Strawberry Explosion</li>
-  </ul>
-
-  <h4>Fresh Milks</h4>
-  <ul>
-    <li>Strawberry Fresh Milk</li>
-    <li>Brown Sugar Fresh Milk</li>
-    <li>Mango Fresh Milk</li>
-  </ul>
-
-  <h4>Yogurts</h4>
-  <ul>
-    <li>Red Bean Yogurt</li>
-    <li>Oat Yogurt</li>
-    <li>Mango Yogurt</li>
-    <li>Lychee Yogurt</li>
-    <li>Strawberry Yogurt</li>
-    <li>Passionfruit Yogurt</li>
-    <li>Osmanthus Yogurt</li>
-    <li>Rose Yogurt</li>
-    <li>Original Yogurt</li>
-    <li>Peach Yogurt</li>
+    <li>Taro</li>
+    <li>Green Bean</li>
   </ul>
 
   <script>
-    const reviewsGenerated = new Set();
-
-    const drinks = {
-      "Milk Green Tea": ["smooth and subtly herbal", "creamy with a gentle green tea aroma"],
-      "Triple Milk Tea": ["rich and indulgent", "perfectly balanced with layers of creaminess"],
-      "Lemon Explosion": ["zesty and invigorating", "a refreshing burst of citrus"],
-      "Strawberry Explosion": ["sweet and fruity", "a delightful strawberry packed treat"],
-      "Strawberry Fresh Milk": ["lusciously creamy with real strawberry flavor", "a perfect blend of fresh and sweet"],
-      "Brown Sugar Fresh Milk": ["decadently sweet with caramel notes", "a smooth and rich delight"],
-      "Mango Fresh Milk": ["tropical and vibrant", "smooth and bursting with mango goodness"],
-      "Red Bean Yogurt": ["earthy and subtly sweet", "a unique combination of red bean and creamy yogurt"],
-      "Oat Yogurt": ["wholesome and hearty", "a satisfying and creamy oat flavor"],
-      "Mango Yogurt": ["tropical and tangy", "a refreshing mango and yogurt combination"],
-      "Lychee Yogurt": ["floral and fragrant", "light and fruity with a tangy twist"],
-      "Strawberry Yogurt": ["classic and sweet", "a creamy strawberry delight"],
-      "Passionfruit Yogurt": ["tangy and tropical", "bright and invigorating"],
-      "Osmanthus Yogurt": ["floral and aromatic", "delicately sweet and refreshing"],
-      "Rose Yogurt": ["elegant and fragrant", "a subtle blend of rose and creamy yogurt"],
-      "Original Yogurt": ["classic and tangy", "smooth and perfectly balanced"],
-      "Peach Yogurt": ["sweet and juicy", "a creamy peachy treat"]
-    };
-
+    // Large phrase pools with expanded variety
     const openers = [
-      "I recently stopped by Chubby Tea and tried", 
-      "Chris suggested I try", 
-      "On my visit to Chubby Tea, Chris recommended", 
-      "I decided to go with Chris’s advice and ordered", 
-      "After hearing Chris rave about it, I ordered", 
-      "I couldn’t resist trying", 
-      "Thanks to Chris, I got to enjoy"
+      "Chris Ha suggested Chubby Tea, and I'm so glad I gave it a try.",
+      "Chubby Tea came highly recommended by Chris Ha, and I couldn't be happier.",
+      "I decided to visit Chubby Tea because of Chris Ha's recommendation.",
+      "Chris Ha raved about Chubby Tea, so I had to see what the buzz was about.",
+      "I was encouraged by Chris Ha to try Chubby Tea, and it was fantastic.",
+      "Chris Ha introduced me to Chubby Tea, and it was a game-changer.",
+      "Following Chris Ha's advice, I stopped by Chubby Tea, and it was amazing."
+    ];
+
+    const descriptions = [
+      "The drinks were vibrant and packed with flavor.",
+      "Each sip was refreshing and perfectly blended.",
+      "The menu offered a diverse range of unique beverages.",
+      "The staff were friendly and helpful throughout the experience.",
+      "The flavors were perfectly balanced and utterly delicious."
+    ];
+
+    const specifics = [
+      "The Milk Tea was smooth and had a delightful hint of sweetness.",
+      "The Mango Coconut Slushy was refreshing and bursting with tropical flavors.",
+      "The Thai Tea had the perfect balance of sweetness and creaminess.",
+      "The Grapefruit Kumquat Green Tea was bright and zesty, a true citrus delight.",
+      "The Herbal Hot Tea was soothing and aromatic, ideal for a chilly evening.",
+      "The Guava Kumquat Green Tea was fruity and refreshing, perfect for any day.",
+      "The Coconut Slushy felt like a mini tropical escape in every sip."
     ];
 
     const closers = [
-      "This was definitely worth the visit!", 
-      "I’ll be coming back for more.", 
-      "Highly recommended if you’re in the area!", 
-      "I’m already planning my next trip here.", 
-      "I can’t wait to try more drinks from Chubby Tea.", 
-      "This was one of the best drinks I’ve ever had.", 
-      "Thank you, Chris, for the fantastic recommendation!"
+      "I'll definitely be back to explore more of the menu.",
+      "This has quickly become one of my favorite spots for tea.",
+      "Chubby Tea is a must-visit for anyone who enjoys a good drink.",
+      "I can't wait to return and try something new next time.",
+      "The experience was unforgettable, and I'll surely be recommending it to friends.",
+      "Chris Ha was absolutely right—this place is amazing.",
+      "If you haven't been to Chubby Tea, you're missing out."
     ];
 
-    document.getElementById("generateReviewButton").addEventListener("click", generateReview);
-
-    function generateRandomReview() {
-      const drink = Object.keys(drinks)[Math.floor(Math.random() * Object.keys(drinks).length)];
-      const descriptors = drinks[drink];
-      const description = descriptors[Math.floor(Math.random() * descriptors.length)];
-      const opener = openers[Math.floor(Math.random() * openers.length)];
-      const closer = closers[Math.floor(Math.random() * closers.length)];
-      return `${opener} the ${drink}. It was ${description}. ${closer}`;
-    }
-
     function generateReview() {
-      let review;
-      do {
-        review = generateRandomReview();
-      } while (reviewsGenerated.has(review));
-      reviewsGenerated.add(review);
+      const opener = openers.splice(Math.floor(Math.random() * openers.length), 1)[0];
+      const description = descriptions[Math.floor(Math.random() * descriptions.length)];
+      const specific = specifics.splice(Math.floor(Math.random() * specifics.length), 1)[0];
+      const closer = closers.splice(Math.floor(Math.random() * closers.length), 1)[0];
+
+      // Constructing the review
+      const review = `${opener} ${description} ${specific} ${closer}`;
       document.getElementById("reviewOutput").textContent = review;
     }
 
