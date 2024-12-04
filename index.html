@@ -20,9 +20,6 @@
       text-align: center;
       color: #FFD700;
     }
-    ul {
-      color: #FFD700; /* Yellow-gold for better visibility */
-    }
     button {
       padding: 15px 25px;
       margin: 10px 5px;
@@ -70,6 +67,16 @@
       width: 20px;
       height: auto;
     }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    ul li {
+      font-size: 20px;
+      font-weight: bold;
+      color: black;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -96,72 +103,53 @@
     <li>Mango Coconut Slushy</li>
     <li>Coconut Slushy</li>
     <li>Herbal Hot Tea</li>
-    <li>Matcha Latte</li>
-    <li>Oolong Milk Tea</li>
-    <li>Peach Jasmine Green Tea</li>
   </ul>
 
   <h2>Toppings</h2>
   <ul>
     <li>Taro</li>
     <li>Green Bean</li>
-    <li>Boba Pearls</li>
-    <li>Aloe Vera</li>
-    <li>Grass Jelly</li>
-    <li>Cheese Foam</li>
   </ul>
 
   <script>
     const openers = [
-      "Chris Ha suggested Chubby Tea, and I am so glad I gave it a try.",
-      "Chubby Tea came highly recommended by Chris Ha, and I could not be happier.",
-      "I decided to visit Chubby Tea because of Chris Ha's recommendation.",
-      "Chris Ha raved about Chubby Tea, so I had to see what the buzz was about.",
-      "I was encouraged by Chris Ha to try Chubby Tea, and it was fantastic.",
-      "Chris Ha introduced me to Chubby Tea, and it was a game changer.",
-      "Following Chris Ha's advice, I stopped by Chubby Tea, and it was amazing.",
-      "A friend told me about Chubby Tea, and I finally decided to check it out.",
-      "Chubby Tea had been on my list for a while, and it did not disappoint.",
-      "The glowing reviews from friends led me straight to Chubby Tea.",
-      "I stumbled upon Chubby Tea and decided to give it a shot."
+      "Chris Ha recommended Chubby Tea and I am so glad I followed the suggestion",
+      "Thanks to Chris Ha, I discovered the amazing drinks at Chubby Tea",
+      "I took Chris Ha’s advice and visited Chubby Tea for the first time",
+      "Chris Ha’s recommendation led me to Chubby Tea and it did not disappoint",
+      "I had heard great things from Chris Ha about Chubby Tea and had to try it",
+      "Chris Ha mentioned Chubby Tea and I finally gave it a shot",
+      "After hearing Chris Ha rave about Chubby Tea, I knew I had to check it out"
     ];
 
     const descriptions = [
-      "The drinks were vibrant and packed with flavor.",
-      "Each sip was refreshing and perfectly blended.",
-      "The menu offered a diverse range of unique beverages.",
-      "The staff were friendly and helpful throughout the experience.",
-      "The flavors were perfectly balanced and utterly delicious.",
-      "Every drink was crafted with care and attention to detail.",
-      "The options felt endless, and everything sounded amazing.",
-      "I loved the variety of drinks and the creative flavor combinations.",
-      "The presentation was stunning, and the taste was even better."
+      "The menu offered a variety of options to satisfy any craving",
+      "Each drink was crafted beautifully and tasted even better",
+      "The flavors were bold, fresh, and perfectly balanced",
+      "Every sip was a delightful experience full of vibrant flavors",
+      "The drinks had a perfect balance of sweetness and richness",
+      "It was clear that Chubby Tea takes pride in their quality ingredients",
+      "The unique flavor combinations left a lasting impression"
     ];
 
     const specifics = [
-      "The Milk Tea was smooth and had a delightful hint of sweetness.",
-      "The Mango Coconut Slushy was refreshing and bursting with tropical flavors.",
-      "The Thai Tea had the perfect balance of sweetness and creaminess.",
-      "The Grapefruit Kumquat Green Tea was bright and zesty, a true citrus delight.",
-      "The Herbal Hot Tea was soothing and aromatic, ideal for a chilly evening.",
-      "The Guava Kumquat Green Tea was fruity and refreshing, perfect for any day.",
-      "The Coconut Slushy felt like a mini tropical escape in every sip.",
-      "The Matcha Latte was rich and earthy, perfect for matcha lovers.",
-      "The Peach Jasmine Green Tea was fragrant and delightfully fruity.",
-      "The Oolong Milk Tea had a robust flavor that tea enthusiasts will adore."
+      "The Milk Tea had a smooth, rich taste that was incredibly satisfying",
+      "The Mango Slushy was a refreshing burst of tropical goodness",
+      "The Thai Tea was rich and creamy, making it the perfect choice",
+      "The Guava Kumquat Green Tea was fruity and refreshing with a tangy finish",
+      "The Grapefruit Kumquat Green Tea was light and invigorating",
+      "The Coconut Slushy felt like a cool escape to a tropical paradise",
+      "The Herbal Hot Tea was warm, comforting, and exactly what I needed"
     ];
 
     const closers = [
-      "I will definitely be back to explore more of the menu.",
-      "This has quickly become one of my favorite spots for tea.",
-      "Chubby Tea is a must-visit for anyone who enjoys a good drink.",
-      "I cannot wait to return and try something new next time.",
-      "The experience was unforgettable, and I will surely be recommending it to friends.",
-      "Chris Ha was absolutely right; this place is amazing.",
-      "If you have not been to Chubby Tea, you are missing out.",
-      "The cozy ambiance and delicious drinks make it a perfect spot.",
-      "I left feeling refreshed and eager to come back.",
-      "Chubby Tea exceeded my expectations in every way."
+      "I am definitely coming back to explore more of the menu",
+      "This place has earned a spot on my list of favorites",
+      "I’ll be recommending Chubby Tea to all my friends",
+      "I can’t wait to return for another visit",
+      "Chubby Tea has quickly become a go-to spot for me",
+      "Thanks to Chris Ha, I found my new favorite tea place",
+      "I’m already looking forward to my next trip to Chubby Tea"
     ];
 
     function generateReview() {
