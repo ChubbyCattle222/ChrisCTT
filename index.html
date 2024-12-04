@@ -83,8 +83,8 @@
   <script>
     // Large phrase pools with expanded variety
     const openers = [
-      "Chris Ha suggested Chubby Tea, and I'm so glad I gave it a try.",
-      "Chubby Tea came highly recommended by Chris Ha, and I couldn't be happier.",
+      "Chris Ha suggested Chubby Tea, and I am so glad I gave it a try.",
+      "Chubby Tea came highly recommended by Chris Ha, and I could not be happier.",
       "I decided to visit Chubby Tea because of Chris Ha's recommendation.",
       "Chris Ha raved about Chubby Tea, so I had to see what the buzz was about.",
       "I was encouraged by Chris Ha to try Chubby Tea, and it was fantastic.",
@@ -111,20 +111,20 @@
     ];
 
     const closers = [
-      "I'll definitely be back to explore more of the menu.",
+      "I will definitely be back to explore more of the menu.",
       "This has quickly become one of my favorite spots for tea.",
       "Chubby Tea is a must visit for anyone who enjoys a good drink.",
-      "I can't wait to return and try something new next time.",
-      "The experience was unforgettable, and I'll surely be recommending it to friends.",
-      "Chris Ha was absolutely right this place is amazing.",
-      "If you haven't been to Chubby Tea, you're missing out."
+      "I cannot wait to return and try something new next time.",
+      "The experience was unforgettable, and I will surely be recommending it to friends.",
+      "Chris Ha was absolutely right; this place is amazing.",
+      "If you have not been to Chubby Tea, you are missing out."
     ];
 
     function generateReview() {
-      const opener = openers.splice(Math.floor(Math.random() * openers.length), 1)[0];
+      const opener = openers[Math.floor(Math.random() * openers.length)];
       const description = descriptions[Math.floor(Math.random() * descriptions.length)];
-      const specific = specifics.splice(Math.floor(Math.random() * specifics.length), 1)[0];
-      const closer = closers.splice(Math.floor(Math.random() * closers.length), 1)[0];
+      const specific = specifics[Math.floor(Math.random() * specifics.length)];
+      const closer = closers[Math.floor(Math.random() * closers.length)];
 
       // Constructing the review
       const review = `${opener} ${description} ${specific} ${closer}`;
